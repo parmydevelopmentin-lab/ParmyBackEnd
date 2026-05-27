@@ -1,0 +1,95 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Gradle
+.gradle/
+build/
+
+# Spring Boot
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Application properties with secrets
+# application-local.properties
+# application-local.yml
+# application-secret.properties
+# application-secret.yml
+
+# Environment files
+.env
+.env.*
+
+# IDEs and editors
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# STS (Spring Tool Suite)
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+tmp/
+temp/
+
+# Test reports
+/test-output/
+/surefire-reports/
+
+# Coverage
+coverage/
+jacoco.exec
+
+# Docker
+*.pid
+*.seed
+
+# IntelliJ
+out/
+
+# Generated files
+bin/
+
+# Mac/Linux hidden files
+*.swp
+*~

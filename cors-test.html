@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Test for Parmy Backend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CORS Test for Parmy Backend</h1>
+    <p>Current Origin: <strong id="currentOrigin"></strong></p>
+    <p>Target API: <strong>https://parmy-backend-latest.onrender.com</strong></p>
+
+    <div>
+        <button onclick="testCorsOptions()">Test CORS Preflight (OPTIONS)</button>
+        <button onclick="testGetProjects()">Test GET /api/projects</button>
+        <button onclick="testHealthCheck()">Test Health Check</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        // Display current origin
+        document.getElementById('currentOrigin').textContent = window.location.origin;
+
+        const API_BASE = 'https://parmy-backend-latest.onrender.com';
+        const resultsDiv = document.getElementById('results');
+
+        function addResult(type, title, content) {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<h3>${title}</h3><pre>${content}</pre>`;
+            resultsDiv.appendChild(div);
+        }
+
+        function clearResults() {
+            resultsDiv.innerHTML = '';
+        }
+
+        async function testCorsOptions() {
+            try {
+                const response = await fetch(`${API_BASE}/api/projects`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Origin': window.location.origin,
+                        'Access-Control-Request-Method': 'GET',
+                        'Access-Control-Request-Headers': 'Content-Type'
+                    }
+                });
+
+                const headers = {};
+                for (let [key, value] of response.headers) {
+                    headers[key] = value;
+                }
+
+                addResult('success', 'CORS Preflight Test - SUCCESS',
+                    `Status: ${response.status}\nHeaders:\n${JSON.stringify(headers, null, 2)}`);
+
+            } catch (error) {
+                addResult('error', 'CORS Preflight Test - FAILED',
+                    `Error: ${error.message}\nThis usually means CORS is not properly configured.`);
+            }
+        }
+
+        async function testGetProjects() {
+            try {
+                const response = await fetch(`${API_BASE}/api/projects`);
+                const data = await response.json();
+
+                addResult('success', 'GET Projects Test - SUCCESS',
+                    `Status: ${response.status}\nData: ${JSON.stringify(data, null, 2).substring(0, 500)}...`);
+
+            } catch (error) {
+                addResult('error', 'GET Projects Test - FAILED',
+                    `Error: ${error.message}\nThis could be a CORS issue or API endpoint issue.`);
+            }
+        }
+
+        async function testHealthCheck() {
+            try {
+                const response = await fetch(`${API_BASE}/actuator/health`);
+                const data = await response.json();
+
+                addResult('success', 'Health Check Test - SUCCESS',
+                    `Status: ${response.status}\nHealth: ${JSON.stringify(data, null, 2)}`);
+
+            } catch (error) {
+                addResult('error', 'Health Check Test - FAILED',
+                    `Error: ${error.message}`);
+            }
+        }
+
+        // Auto-run basic info
+        addResult('info', 'Test Information',
+            `Current Origin: ${window.location.origin}\nTarget API: ${API_BASE}\nBrowser: ${navigator.userAgent}`);
+    </script>
+</body>
+
+</html>
