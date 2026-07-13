@@ -3,6 +3,7 @@ package com.parmy.parmy_backend.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
     /**
      * Send OTP email to user
      * 
@@ -26,6 +30,7 @@ public class EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email);
+            message.setFrom(fromEmail);
 
             if (isRegistration) {
                 message.setSubject("PARMY TECHNOLOGIES PVT LTD - Email Verification OTP");
@@ -55,6 +60,7 @@ public class EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email);
+            message.setFrom(fromEmail);
 
             if (isRegistration) {
                 message.setSubject("PARMY TECHNOLOGIES PVT LTD - Google Account Verification OTP");
@@ -83,6 +89,7 @@ public class EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email);
+            message.setFrom(fromEmail);
             message.setSubject("Welcome to PARMY TECHNOLOGIES PVT LTD - Registration Successful!");
             message.setText(buildRegistrationSuccessMessage(username));
 
@@ -196,6 +203,7 @@ public class EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email);
+            message.setFrom(fromEmail);
             message.setSubject("PARMY TECHNOLOGIES PVT LTD - Password Reset Request");
             message.setText(buildPasswordResetMessage(username, resetCode));
 
@@ -218,6 +226,7 @@ public class EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email);
+            message.setFrom(fromEmail);
             message.setSubject("PARMY TECHNOLOGIES PVT LTD - Password Changed Successfully");
             message.setText(buildPasswordChangedMessage(username));
 
@@ -239,6 +248,7 @@ public class EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(adminEmail);
+            message.setFrom(fromEmail);
             message.setSubject("New Purchase Submitted - " + projectTitle);
             message.setText(String.format(
                     "A new purchase has been submitted.\n\nBuyer: %s\nProject: %s\nAmount: %.2f %s\n\nPlease review and verify the payment proof in the admin dashboard.",
@@ -257,6 +267,7 @@ public class EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(buyerEmail);
+            message.setFrom(fromEmail);
             message.setSubject("Purchase Submitted - " + projectTitle);
             message.setText(String.format(
                     "Thank you for your purchase submission for '%s'.\n\nOur team will verify your payment proof shortly and notify you once it's approved.",

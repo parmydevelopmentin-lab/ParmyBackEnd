@@ -31,6 +31,7 @@ public class ContactService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(hostEmail);
+            message.setFrom(hostEmail);
             message.setSubject("New Contact Form Submission - " + contactRequest.getFullName());
             message.setText(buildContactFormEmailContent(contactRequest));
             message.setReplyTo(contactRequest.getEmail());
@@ -53,6 +54,7 @@ public class ContactService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(contactRequest.getEmail());
+            message.setFrom(hostEmail);
             message.setSubject("Thank you for contacting PARMY TECHNOLOGIES - We've received your message");
             message.setText(buildAcknowledgmentEmailContent(contactRequest));
             

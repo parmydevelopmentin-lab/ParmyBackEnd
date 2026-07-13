@@ -20,5 +20,9 @@ public class WebConfig implements WebMvcConfigurer {
         // Serve project abstract files (protected endpoint will be created separately)
         registry.addResourceHandler("/project_abstracts/**")
                 .addResourceLocations("file:./project_abstracts/");
+
+        // Serve gallery upload files
+        registry.addResourceHandler("/gallery_uploads/**")
+                .addResourceLocations("file:./gallery_uploads/");
     }
 }

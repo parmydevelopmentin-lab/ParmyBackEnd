@@ -60,11 +60,14 @@ public class SecurityConfig {
                         // Allow static file access
                         .requestMatchers("/purchases/**").permitAll()
                         .requestMatchers("/offer_letters/**").permitAll()
+                        .requestMatchers("/gallery_uploads/**").permitAll()
                         // Project abstracts require authentication
                         .requestMatchers("/api/projects/*/abstract/**").authenticated()
 
                         // Public projects endpoints
                         .requestMatchers("/api/projects/**").permitAll()
+                        // Public gallery endpoints
+                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/gallery").permitAll()
 
                         // Admin-only endpoints (require authentication and ADMIN role)
                         .requestMatchers("/api/invoices/**").hasRole("ADMIN")

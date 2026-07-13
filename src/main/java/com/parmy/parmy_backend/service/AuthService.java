@@ -92,7 +92,7 @@ public class AuthService {
      * @param request the login request
      * @return ApiResponse indicating success or failure
      */
-    public ApiResponse<String> login(LoginRequest request) {
+    public ApiResponse<AuthResponse> login(LoginRequest request) {
         try {
             // Find user by email
             Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
@@ -112,13 +112,12 @@ public class AuthService {
                 return ApiResponse.error("Please verify your email first");
             }
             
-            // Generate and send OTP for login verification
-            String otp = otpService.generateOTP();
-            otpService.storeOTP(request.getEmail(), otp, OTPType.LOGIN);
-            emailService.sendOTPEmail(request.getEmail(), otp, false);
+            // Generate JWT token directly (no OTP needed for login)
+            String token = jwtUtil.generateToken(user.getId(), user.getEmail());
+            AuthResponse authResponse = new AuthResponse(token, new UserResponse(user));
             
-            logger.info("Login OTP sent to email: {}", request.getEmail());
-            return ApiResponse.success("OTP sent to your email. Please verify to complete login.");
+            logger.info("User logged in successfully (direct): {}", request.getEmail());
+            return ApiResponse.success("Login successful", authResponse);
             
         } catch (Exception e) {
             logger.error("Login failed for email: {}", request.getEmail(), e);
@@ -253,7 +252,7 @@ public class AuthService {
      * @param request the Google auth request
      * @return ApiResponse indicating success or failure
      */
-    public ApiResponse<String> loginWithGoogle(GoogleAuthRequest request) {
+    public ApiResponse<AuthResponse> loginWithGoogle(GoogleAuthRequest request) {
         try {
             // Verify Google token and get user info
             GoogleIdToken.Payload payload = verifyGoogleToken(request.getToken());
@@ -276,13 +275,12 @@ public class AuthService {
                 return ApiResponse.error("This email is registered with email/password. Please use regular login.");
             }
             
-            // Generate and send OTP for Google login verification
-            String otp = otpService.generateOTP();
-            otpService.storeOTP(email, otp, OTPType.GOOGLE_LOGIN);
-            emailService.sendGoogleOTPEmail(email, otp, false);
+            // Generate JWT token directly (no OTP needed for Google login)
+            String token = jwtUtil.generateToken(user.getId(), user.getEmail());
+            AuthResponse authResponse = new AuthResponse(token, new UserResponse(user));
             
-            logger.info("Google login OTP sent to email: {}", email);
-            return ApiResponse.success("OTP sent to your email. Please verify to complete Google login.");
+            logger.info("Google user logged in successfully (direct): {}", email);
+            return ApiResponse.success("Login successful", authResponse);
             
         } catch (Exception e) {
             logger.error("Google login failed", e);

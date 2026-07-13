@@ -48,10 +48,10 @@ public class AuthController {
      * @return ResponseEntity with ApiResponse
      */
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<String>> login(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request) {
         logger.info("Login attempt for email: {}", request.getEmail());
         
-        ApiResponse<String> response = authService.login(request);
+        ApiResponse<AuthResponse> response = authService.login(request);
         
         HttpStatus status = response.isSuccess() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
@@ -78,10 +78,10 @@ public class AuthController {
      * @return ResponseEntity with ApiResponse
      */
     @PostMapping("/google/login")
-    public ResponseEntity<ApiResponse<String>> loginWithGoogle(@Valid @RequestBody GoogleAuthRequest request) {
+    public ResponseEntity<ApiResponse<AuthResponse>> loginWithGoogle(@Valid @RequestBody GoogleAuthRequest request) {
         logger.info("Google login attempt");
         
-        ApiResponse<String> response = authService.loginWithGoogle(request);
+        ApiResponse<AuthResponse> response = authService.loginWithGoogle(request);
         
         HttpStatus status = response.isSuccess() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);

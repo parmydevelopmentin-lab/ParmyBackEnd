@@ -93,3 +93,10 @@ bin/
 # Mac/Linux hidden files
 *.swp
 *~
+
+# Local uploads directories
+gallery_uploads/
+offer_letters/
+project_abstracts/
+purchases/
+package-lock.json
