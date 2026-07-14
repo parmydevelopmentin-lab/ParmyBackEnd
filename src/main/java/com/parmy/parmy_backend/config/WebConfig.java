@@ -24,5 +24,9 @@ public class WebConfig implements WebMvcConfigurer {
         // Serve gallery upload files
         registry.addResourceHandler("/gallery_uploads/**")
                 .addResourceLocations("file:./gallery_uploads/");
+
+        // Serve project thumbnail files
+        registry.addResourceHandler("/project_thumbnails/**")
+                .addResourceLocations("file:./project_thumbnails/");
     }
 }

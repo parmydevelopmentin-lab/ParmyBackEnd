@@ -270,9 +270,13 @@ public class AuthService {
             
             User user = userOpt.get();
             
-            // Check if user was registered with Google
+            // Check if user was registered with Google; if not, link it automatically since email is verified by Google
             if (user.getAuthProvider() != AuthProvider.GOOGLE) {
-                return ApiResponse.error("This email is registered with email/password. Please use regular login.");
+                user.setAuthProvider(AuthProvider.GOOGLE);
+                String googleId = payload.getSubject();
+                user.setGoogleId(googleId);
+                userRepository.save(user);
+                logger.info("Linked existing local user account to Google OAuth: {}", email);
             }
             
             // Generate JWT token directly (no OTP needed for Google login)

@@ -31,6 +31,7 @@ public class ProjectDataInitializer implements CommandLineRunner {
         logger.info("Checking and seeding default projects into MongoDB...");
         
         List<Project> defaultProjects = Arrays.asList(
+            // 5 default projects
             createProject(
                 "e-commerce-mobile-app",
                 "E-Commerce Mobile App Platform",
@@ -86,69 +87,241 @@ public class ProjectDataInitializer implements CommandLineRunner {
                 Arrays.asList("Next.js", "Java", "Spring Security", "PostgreSQL", "HIPAA"),
                 "/office.png"
             ),
+
+            // 19 YouTube Projects
+            createProject(
+                "phish-catcher-ml-django",
+                "PhishCatcher | Client-Side Defense Against Web Spoofing Attacks Using ML",
+                "ML-based client-side defense system against web spoofing attacks.",
+                "A comprehensive Django-based client-side defense framework that detects and prevents web spoofing (phishing) attacks using machine learning classification. It analyzes web page layouts, DOM elements, and visual cues to verify brand authenticity.",
+                12000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Django", "Python", "Machine Learning", "Security"),
+                "https://img.youtube.com/vi/r41YuEF6FwQ/hqdefault.jpg"
+            ),
+            createProject(
+                "ai-employee-stress-prediction",
+                "AI Employee Stress Prediction Using Machine Learning",
+                "Predict employee stress using LSTM, XGBoost, and XAI.",
+                "A machine learning framework utilising Flask, LSTM networks, and XGBoost models combined with Explainable AI (XAI) techniques. It analyzes multiple employee telemetry metrics to evaluate workplace stress levels and outputs detailed visual dashboards for HR.",
+                18000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Flask", "LSTM", "XGBoost", "XAI", "Python", "Machine Learning"),
+                "https://img.youtube.com/vi/86Vgq2g_S7E/hqdefault.jpg"
+            ),
             createProject(
                 "ai-career-ready",
-                "AI CareerReady",
-                "AI-powered resume analyzer and mock interview system.",
-                "An advanced AI-powered career preparation platform featuring a resume parser/analyzer, job description matcher, and interactive mock interview simulator using Django AI. It helps candidates identify career readiness gaps, optimize resumes for ATS alignment, and practice multi-turn interviews.",
+                "AI CareerReady | AI Resume Analyzer & Mock Interview System",
+                "AI-powered resume optimizer and mock interview platform.",
+                "An intelligent career readiness dashboard built with Django. Features include an automated resume analyzer, a job description matching engine, and an interactive AI mock interviewer that provides contextual feedback for candidate preparation.",
                 15000.0,
                 "INR",
                 "AI/ML",
                 Arrays.asList("Django", "Python", "AI", "NLP", "React"),
-                "/ai-career-ready.png"
-            ),
-            createProject(
-                "ai-employee-stress-prediction",
-                "AI Employee Stress Prediction",
-                "Predicts and analyzes employee stress using LSTM, XGBoost, and XAI.",
-                "A comprehensive machine learning system utilizing Flask, LSTM, XGBoost, and Explainable AI (XAI) to analyze telemetry data and predict employee stress levels. The platform offers cognitive workload insights, mental health telemetry dashboards, and actionable feedback loops for HR management.",
-                18000.0,
-                "INR",
-                "AI/ML",
-                Arrays.asList("Flask", "Python", "LSTM", "XGBoost", "XAI", "Machine Learning"),
-                "/employee-stress.png"
-            ),
-            createProject(
-                "email-spam-detection",
-                "Email Spam Detection",
-                "Detects and filters spam emails using machine learning.",
-                "A high-accuracy machine learning system designed to detect and filter out spam emails. Built using Python, Scikit-Learn, and NLP pipelines, it classifies incoming mail packets based on content, domain trust, and header anomalies, providing detailed metrics on a clean React dashboard.",
-                8000.0,
-                "INR",
-                "AI/ML",
-                Arrays.asList("Python", "Scikit-Learn", "NLP", "React", "Machine Learning"),
-                "/email-spam.png"
+                "https://img.youtube.com/vi/rj2puooGBoc/hqdefault.jpg"
             ),
             createProject(
                 "air-weather-quality-monitoring",
-                "Air and Weather Quality Monitoring",
-                "AI-based real-time weather and air quality index monitoring.",
-                "An IoT and AI-driven monitoring system powered by Flask and machine learning. It collects, visualizes, and predicts local air quality index (AQI) values, temperature, humidity, and atmospheric pollutants in real-time, displaying details on interactive dashboards.",
+                "Air and Weather Quality Monitoring using Artificial Intelligence",
+                "AI-driven real-time atmospheric and weather quality monitoring.",
+                "An IoT and ML-powered climate telemetry system built with Flask. It visualizes local air quality index (AQI) values, temperature, humidity, and predicts future pollution levels using historic datasets and classification models.",
                 12000.0,
                 "INR",
                 "AI/ML",
-                Arrays.asList("Flask", "Python", "IoT", "Machine Learning", "React"),
-                "/weather-monitoring.png"
+                Arrays.asList("Flask", "Python", "IoT", "Machine Learning"),
+                "https://img.youtube.com/vi/TvejVbUwRps/hqdefault.jpg"
+            ),
+            createProject(
+                "email-spam-detection",
+                "Email Spam Detection using Machine Learning Algorithms",
+                "Content-based email spam detection system using ML.",
+                "A high-performance spam filtering application. Built using Scikit-Learn NLP pipelines, it classifies incoming emails into spam or ham based on visual/text patterns, vocabulary weights, and structural metadata.",
+                8000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Python", "Scikit-Learn", "NLP", "Machine Learning"),
+                "https://img.youtube.com/vi/ofxI7zSPvaM/hqdefault.jpg"
+            ),
+            createProject(
+                "ai-financial-market-forecasting",
+                "AI-Driven Predictive Analytics for Financial Market Forecasting",
+                "AI and deep learning framework for market trend predictions.",
+                "An advanced financial forecasting dashboard powered by Flask, recurrent neural networks (RNN/LSTM), and regression trees. It predicts stock and asset prices, calculates volatility indices, and provides visual trading trend analytics.",
+                22000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Flask", "Deep Learning", "Python", "FinTech", "LSTM"),
+                "https://img.youtube.com/vi/QrADwUNshjc/hqdefault.jpg"
+            ),
+            createProject(
+                "phishing-website-detection-url",
+                "Machine Learning-Based Real-Time Phishing Website Detection System",
+                "Real-time phishing website detector using URL feature analysis.",
+                "A lightweight security module that analyzes domain and URL syntax patterns (length, dots, special tokens, protocol anomalies) in real-time to classify phishing websites using random forest models.",
+                11000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Python", "Machine Learning", "Security", "Flask"),
+                "https://img.youtube.com/vi/-6PYNRUiCFE/hqdefault.jpg"
+            ),
+            createProject(
+                "ai-medical-chatbot",
+                "AI-Driven Medical Chatbot using NLP & ML",
+                "Symptoms-based disease predictor and hospital recommender.",
+                "An NLP-enabled healthcare assistant. Patients input symptoms in natural language, and the chatbot predicts potential diseases while recommending matching departments and nearby hospitals.",
+                16000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("NLP", "FastAPI", "React", "Healthcare", "Machine Learning"),
+                "https://img.youtube.com/vi/NR2tOQ3hn9A/hqdefault.jpg"
+            ),
+            createProject(
+                "sql-attendance-marks-management",
+                "SQL-Based Attendance, Marks & Assignment Management System",
+                "Comprehensive student academic records manager with Django and MySQL.",
+                "A secure portal for educational institutions. Teachers can log student attendance, grade assignments, publish term marks, and students can download performance analytics from a clean MySQL relational database.",
+                14000.0,
+                "INR",
+                "Software Development",
+                Arrays.asList("Django", "MySQL", "Python", "Database"),
+                "https://img.youtube.com/vi/YD1uxL4Ggl0/hqdefault.jpg"
+            ),
+            createProject(
+                "heart-disease-prediction-ecg-xray",
+                "Heart Disease Prediction System using Machine Learning",
+                "Predicts heart disease using ECG and Chest X-Ray image analysis.",
+                "A hybrid diagnostic system. Combines numerical health history analytics with computer vision (CNN models) to classify chest X-ray images and ECG signals for accurate heart disease pre-screening.",
+                24000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Django", "CNN", "Deep Learning", "Healthcare", "Python"),
+                "https://img.youtube.com/vi/gCdh0Xzi0ks/hqdefault.jpg"
+            ),
+            createProject(
+                "ai-voice-to-sql-assistant",
+                "AI Voice-to-SQL Assistant",
+                "Convert spoken commands into executable SQL queries with visual analytics.",
+                "An innovative database assistant that translates natural voice speech into SQL statements, executes them on the target DB, and automatically renders the result set in charts and tables.",
+                19000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("SpeechRecognition", "NLP", "React", "Python", "Database"),
+                "https://img.youtube.com/vi/JvuveyVa_gU/hqdefault.jpg"
+            ),
+            createProject(
+                "indian-temple-3d-virtual-museum",
+                "Indian Temple Museum | 3D Virtual Museum",
+                "Interactive 3D virtual museum showcasing Indian heritage.",
+                "An immersive virtual heritage tour platform. Built using Three.js and WebGL on the frontend and FastAPI/MySQL on the backend, allowing users to explore virtual rooms with historical artifacts in 3D.",
+                28000.0,
+                "INR",
+                "Software Development",
+                Arrays.asList("React", "Three.js", "FastAPI", "MySQL", "3D"),
+                "https://img.youtube.com/vi/NGK44gwqiDI/hqdefault.jpg"
+            ),
+            createProject(
+                "crowd-count-ai-yolov5",
+                "CrowdCountAI | Real-Time Crowd Detection & Monitoring System",
+                "Real-time crowd counting and object tracking with YOLOv5 and DeepSORT.",
+                "A high-speed video analytics system. Detects and tracks people in crowd densities using YOLOv5 and handles re-identification/tracking across camera streams with DeepSORT.",
+                23000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("YOLOv5", "DeepSORT", "Computer Vision", "Python"),
+                "https://img.youtube.com/vi/M19qRuvLhQ8/hqdefault.jpg"
+            ),
+            createProject(
+                "audio-to-sign-language-converter",
+                "Audio to Sign Language Converter",
+                "Real-time speech translation into animated Indian Sign Language.",
+                "An accessibility application that records microphone input, translates English/Hindi text into structured sign tokens, and displays corresponding 3D avatar animations or video snippets.",
+                17000.0,
+                "INR",
+                "Software Development",
+                Arrays.asList("SpeechRecognition", "React", "Python", "Accessibility"),
+                "https://img.youtube.com/vi/Hxcw4Ks4qp0/hqdefault.jpg"
+            ),
+            createProject(
+                "co2-estimation-tracker-ar",
+                "CO2 Estimation Tracker | AI + AR Powered Carbon Footprint Detection",
+                "AI and AR-driven carbon footprint detection and estimation.",
+                "A smart environmental tracking dashboard. It uses image recognition and augmented reality inputs to estimate carbon footprints of physical items, vehicles, and lifestyles, recommending offsets.",
+                21000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Python", "AR", "AI", "Environment"),
+                "https://img.youtube.com/vi/WC_VAtx99FM/hqdefault.jpg"
+            ),
+            createProject(
+                "automated-number-plate-detection-ocr",
+                "Automated Number Plate Detection Using OCR",
+                "Real-time vehicle license plate detection and OCR extraction.",
+                "A vehicle logging and parking gate automation system. Utilizes OpenCV for frame analysis, locates license plates via boundary search, and extracts text using EasyOCR/Tesseract.",
+                13000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Django", "OpenCV", "EasyOCR", "Python"),
+                "https://img.youtube.com/vi/EI5m9cyEjmg/hqdefault.jpg"
+            ),
+            createProject(
+                "cyber-breach-monitoring-system",
+                "Cyber Breach Monitoring System",
+                "Detects and monitors network traffic breaches using ML classification.",
+                "A security information dashboard. It consumes network log data feeds, detects anomalies and intrusion footprints using random forest classifiers, and highlights breach status alerts.",
+                16000.0,
+                "INR",
+                "AI/ML",
+                Arrays.asList("Flask", "Python", "Machine Learning", "Security"),
+                "https://img.youtube.com/vi/ZXQ1sB5iuB8/hqdefault.jpg"
+            ),
+            createProject(
+                "online-auction-system",
+                "Online Auction System",
+                "Real-time online bidding and auction management portal.",
+                "A highly interactive web portal featuring real-time bidding updates via WebSockets, product galleries, countdown timers, secure payment processing, and seller metrics.",
+                15000.0,
+                "INR",
+                "Software Development",
+                Arrays.asList("React", "Python", "MySQL", "WebSockets"),
+                "https://img.youtube.com/vi/2BtRyw2nGBc/hqdefault.jpg"
+            ),
+            createProject(
+                "parmy-technologies-launch",
+                "Welcome to Parmy Technologies Pvt Ltd | Academic Project Development",
+                "Official portal for corporate services and project development.",
+                "The official introductory landing page and corporate service portal showcasing software development, technical training courses, student project consultancy, and corporate staffing portfolios.",
+                5000.0,
+                "INR",
+                "Software Development",
+                Arrays.asList("React", "Spring Boot", "Corporate"),
+                "https://img.youtube.com/vi/ieK_Q6g2Fis/hqdefault.jpg"
             )
         );
 
         int newlySeeded = 0;
+        int updated = 0;
         for (Project p : defaultProjects) {
             if (!projectRepository.existsBySlug(p.getSlug())) {
                 projectRepository.save(p);
                 newlySeeded++;
                 logger.info("✅ Seeded new project: {}", p.getTitle());
             } else {
-                // If it already exists, let's update it to ensure it has the correct thumbnail and details
-                projectRepository.findBySlug(p.getSlug()).ifPresent(existing -> {
+                Project existing = projectRepository.findBySlug(p.getSlug()).orElse(null);
+                if (existing != null) {
+                    existing.setTitle(p.getTitle());
+                    existing.setShortDescription(p.getShortDescription());
+                    existing.setDescription(p.getDescription());
                     existing.setThumbnailUrl(p.getThumbnailUrl());
-                    existing.setTags(p.getTags());
                     existing.setCategory(p.getCategory());
+                    existing.setTags(p.getTags());
                     projectRepository.save(existing);
-                });
+                    updated++;
+                }
             }
         }
-        logger.info("Seeding check completed. Seeded {} new projects.", newlySeeded);
+        logger.info("Seeding check completed. Seeded {} new projects, updated {} projects.", newlySeeded, updated);
     }
 
     private Project createProject(
